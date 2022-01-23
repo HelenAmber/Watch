@@ -97,43 +97,25 @@ function buttonsState(selector1, selector2, selector3, state1, state2, state3){
   selector3.disabled = state3;
 }
 
-function getCurrentTime() {
-  timeDisplay.style.background = "grey";
-  timeId = setInterval( function(){
-    var date = new Date();
+//CurrentTime**************************************************************************************************
+function getCurrentTime() {  
+  buttons.timeDisplay.style.background = 'violet';
 
-    var currentHour = date.getHours();
-    currentHour = String(currentHour);
-      var currentMinutes = date.getMinutes();
-        currentMinutes = String(currentMinutes);
-         var currentSeconds = date.getSeconds();
-            currentSeconds = String(currentSeconds);                    
+  function setTime(){
+    let date = new Date(),
+        hour = date.getHours(),
+        minutes = date.getMinutes(),
+        seconds = date.getSeconds();
     
-    firstCell.innerHTML = currentHour[0]; 
-    secondCell.innerHTML = currentHour[1];    
-      thirdCell.innerHTML = currentMinutes[0];
-      fourthCell.innerHTML = currentMinutes[1];  
-        fifthCell.innerHTML = currentSeconds[0];  
-        sixthCell.innerHTML = currentSeconds[1] ;
-               
-        if (currentSeconds < 10) {
-          fifthCell.innerHTML = 0;
-          sixthCell.innerHTML = currentSeconds[0];      
-        }  
-        if (currentMinutes < 10) {
-          thirdCell.innerHTML = 0;
-          fourthCell.innerHTML = currentMinutes[0];  
-        }
-        if (currentHour < 10) {
-          firstCell.innerHTML = 0;
-          secondCell.innerHTML = currentHour[0];
-        }
+    setHours(hour);
+    setMinutes(minutes);
+    setSeconds(seconds);
+   }
 
-   }, 1000);
-   buttonStart.disabled = true;
-   buttonStop.disabled = true;
+   timeId = setInterval(setTime, 1000);
+   buttons.buttonStart.disabled = true;
+   buttons.buttonStop.disabled = true;
 }
-
 getCurrentTime();
 //*****************************************************************************************************
 var startStopwatch;
