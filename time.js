@@ -234,25 +234,18 @@ buttons.buttonStart.addEventListener('click', () => {
   buttonsState('#stopwatch', '#timer', '#timeDisplay', true, true, true);
 });
 
-buttonStop.addEventListener('click', () => {
+buttons.buttonStop.addEventListener('click', () => {
   clearInterval(startStopwatch);
   clearInterval(startTimer);
-  buttonStart.style.backgroundColor = "rgb(82, 78, 78)";
-  buttonStop.style.backgroundColor = "red";
-  stopwatch.disabled = false;
-  timer.disabled = false;
-  timeDisplay.disabled = false;
-  buttonStart.disabled = false;
+  buttonsModes('#buttonStart', 'rgb(82, 78, 78)', false);
+  buttons.buttonStop.style.backgroundColor = 'red';
+  buttonsState('#stopwatch', '#timer', '#timeDisplay', false, false, false);
 });
 
-timer.addEventListener('click', () => { 
-  timer.style.background = "grey";
+buttons.timer.addEventListener('click', () => { 
   clearDisplay();
-  enterTime();
-  stopwatch.style.background = "rgb(175, 138, 175)";
-  timeDisplay.style.background = "rgb(175, 138, 175)";
-  timer.disabled = true;
-  buttonStart.disabled = false;
-  buttonStop.disabled = false;
+  getTime();
+  buttonsStyle('#timeDisplay','#stopwatch','#timer', 'rgb(175, 138, 175)','rgb(175, 138, 175)','violet');
+  buttonsState('#timer', '#buttonStart', '#buttonStop', true, false, false);
 });
 
