@@ -204,21 +204,16 @@ function clearDisplay() {
   setMinutes('00');
   setSeconds('00');
 }
-//*************************************Buttons click******************************************* */
-clear.addEventListener('click', () => {
+//Buttons click************************************************************************************************
+buttons.clear.addEventListener('click', () => {
   clearDisplay();
-  timeDisplay.style.background = "rgb(175, 138, 175)";
-  stopwatch.style.background = "rgb(175, 138, 175)";
-  timer.style.background = "rgb(175, 138, 175)";
-  buttonStart.style.backgroundColor = "rgb(82, 78, 78)";
-  buttonStop.style.backgroundColor = "rgb(82, 78, 78)";
-  buttonStart.disabled = true;
+  buttonsStyle('#timeDisplay','#stopwatch','#timer', 'rgb(175, 138, 175)','rgb(175, 138, 175)','rgb(175, 138, 175)');
+  buttons.buttonStop.style.backgroundColor = 'rgb(82, 78, 78)';
+  buttonsModes('#buttonStart', 'rgb(82, 78, 78)', true);
  });
 
-timeDisplay.addEventListener('click', () => {
-  timeDisplay.style.background = "grey";
-  stopwatch.style.background = "rgb(175, 138, 175)";
-  timer.style.background = "rgb(175, 138, 175)";
+buttons.timeDisplay.addEventListener('click', () => {
+  buttonsStyle('#timeDisplay','#stopwatch','#timer', 'violet','rgb(175, 138, 175)','rgb(175, 138, 175)');
   clearInterval(startTimer); 
   clearInterval(startStopwatch);
   getCurrentTime();
