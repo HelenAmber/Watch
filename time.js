@@ -143,114 +143,58 @@ function stopwatchOn() {
       }
   startStopwatch = setInterval(setStopwatch, 10);
 }
-//***************************************************************************************************
-var enterSc;
-var enterMn;
-var enterHr;
+//Timer************************************************************************************************************
+function getTime() {
+  getSeconds = prompt('Enter the number of seconds',0);
+  getMinutes = prompt('Enter the number of minutes',0);
+  getHours = prompt('Enter the number of hours',0);
 
-function enterTime () {
-  enterSc = prompt('Enter secons',0);
-  enterMn = prompt('Enter minutes',0);
-  enterHr = prompt('Enter hours',0);
-
-  if (enterSc == '' || enterSc == null) {
-        sixthCell.innerHTML = 0;
+  if (getSeconds == '' || getSeconds == null) {
+        setSeconds('00');
   }
-  if (enterMn == '' || enterMn == null) {
-        fourthCell.innerHTML = 0;
+  if (getMinutes == '' || getMinutes == null) {
+        setMinutes('00');
   }
-  if (enterHr == '' || enterHr == null) {
-        secondCell.innerHTML = 0;
-  }
-  
-  if (enterSc < 10) {
-    fifthCell.innerHTML = 0;
-    sixthCell.innerHTML = enterSc[0];
-  } else {
-    fifthCell.innerHTML = enterSc[0];
-    sixthCell.innerHTML = enterSc[1];
-  }
-
-  if (enterMn < 10) {
-    thirdCell.innerHTML = 0;
-    fourthCell.innerHTML = enterMn[0];
-  } else {
-    thirdCell.innerHTML = enterMn[0];
-    fourthCell.innerHTML = enterMn[1];
-  }
-
-  if (enterHr < 10) {
-    firstCell.innerHTML = 0;
-    secondCell.innerHTML = enterHr[0];
-  } else {
-    firstCell.innerHTML = enterHr[0];
-    secondCell.innerHTML = enterHr[1];
-  }
+  if (getHours == '' || getHours == null) {
+        setHours('00');
+  } 
+  setHours(getHours);
+  setMinutes(getMinutes);
+  setSeconds(getSeconds);
 }
 
-var startTimer;
-
 function timerOn() {
-  var secondCount = enterSc;  
-  var minuteCount = enterMn;
-  var hourCount = enterHr;
-  
-  startTimer = setInterval( function() {
-    secondCount--;
-      if (secondCount < 10) {
-          secondCount = String(secondCount);
-          fifthCell.innerHTML = 0;
-          sixthCell.innerHTML = secondCount[0];
-        } else {
-          secondCount = String(secondCount);
-          fifthCell.innerHTML = secondCount[0];
-          sixthCell.innerHTML = secondCount[1];
+  let fourthCell = document.querySelector('#fourthCell'),
+      fifthCell = document.querySelector('#fifthCell'),
+      sixthCell = document.querySelector('#sixthCell');   
+
+      function setTimer() {    
+        getSeconds--;
+        setSeconds(getSeconds);
+          
+        if (getSeconds < 0 && getMinutes > 0) {            
+          getMinutes--;                        
+          getSeconds = 59;
+            fourthCell.innerHTML = 0;
+            fifthCell.innerHTML = 5;
+            sixthCell.innerHTML = 9;
+            setMinutes(getMinutes); 
+                  
+            if (getMinutes <= 0 && getHours > 0) {                        
+              getHours--;
+              getMinutes = 60;
+              getSeconds = 59;
+            setHours(getHours);                              
+             }        
         }
-
-          if (secondCount < 0 && minuteCount > 0) {
-              minuteCount--;           
-              secondCount = 59;
-              fifthCell.innerHTML = 5;
-              sixthCell.innerHTML = 9;
-              
-              if (minuteCount < 10) {
-                 minuteCount = String(minuteCount);
-                 thirdCell.innerHTML = 0;
-                 fourthCell.innerHTML = minuteCount[0];
-                 } else {
-                 minuteCount = String(minuteCount);
-                 thirdCell.innerHTML = minuteCount[0];
-                 fourthCell.innerHTML = minuteCount[1];
-               }
-
-                if (minuteCount <= 0 && hourCount > 0) {
-
-                     hourCount--;
-                     minuteCount = 60;
-                     secondCount = 60;
-
-                      if (hourCount < 10) {
-                      hourCount = String(hourCount);
-                      firstCell.innerHTML = 0;
-                      secondCell.innerHTML = hourCount[0];
-                      } else {
-                      hourCount = String(hourCount);
-                      firstCell.innerHTML = hourCount[0];
-                      secondCell.innerHTML = hourCount[1];
-                      }                                 
-         }        
-    }
-      if (secondCount == 0 && minuteCount == 0 && hourCount == 0) {
-         clearInterval(startTimer);
-         enterSc = 0;
-         enterMn = 0;
-         enterHr = 0;
-         buttonStart.style.backgroundColor = "rgb(82, 78, 78)";
-         buttonStart.disabled = false;
-         timeDisplay.disabled = false;
-         stopwatch.disabled = false;
-     }
-  }, 1000);
+           if (getSeconds == 0 && getMinutes == 0 && getHours == 0) {
+              clearDisplay();
+              buttonsModes('#buttonStart', 'rgb(82, 78, 78)', false);
+              buttons.timeDisplay.disabled = false;
+              buttons.stopwatch.disabled = false;
+          }
+      }  
+  startTimer = setInterval(setTimer, 1000);
 }
 //***********************************************************************************************************
 function clearDisplay() { 
