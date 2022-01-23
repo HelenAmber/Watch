@@ -219,24 +219,19 @@ buttons.timeDisplay.addEventListener('click', () => {
   getCurrentTime();
 });
 
-stopwatch.addEventListener('click', () => {
+buttons.stopwatch.addEventListener('click', () => {
   clearDisplay();
-  stopwatch.style.background = "grey";
-  timeDisplay.style.background = "rgb(175, 138, 175)";
-  timer.style.background = "rgb(175, 138, 175)";
-  buttonStart.disabled = false;
-  buttonStop.disabled = false;
+  buttonsStyle('#timeDisplay','#stopwatch','#timer', 'rgb(175, 138, 175)','violet','rgb(175, 138, 175)');
+  buttons.buttonStart.disabled = false;
+  buttons.buttonStop.disabled = false;
 });
 
-buttonStart.addEventListener('click', () => { 
-  if (enterSc || enterMn || enterHr) {timerOn();}
-  else {stopwatchOn();};
-  buttonStart.style.backgroundColor = "red";
-  buttonStop.style.backgroundColor = "rgb(82, 78, 78)";
-  stopwatch.disabled = true;
-  timer.disabled = true;
-  timeDisplay.disabled = true;
-  buttonStart.disabled = true;
+buttons.buttonStart.addEventListener('click', () => { 
+  if (getSeconds > 0 || getMinutes > 0 || getHours > 0) {timerOn();}
+  else {stopwatchOn();}
+  buttonsModes('#buttonStart', 'red', true);
+  buttons.buttonStop.style.backgroundColor = 'rgb(82, 78, 78)';
+  buttonsState('#stopwatch', '#timer', '#timeDisplay', true, true, true);
 });
 
 buttonStop.addEventListener('click', () => {
