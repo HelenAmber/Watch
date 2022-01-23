@@ -196,19 +196,13 @@ function timerOn() {
       }  
   startTimer = setInterval(setTimer, 1000);
 }
-//***********************************************************************************************************
+//clearDisplay************************************************************************************************
 function clearDisplay() { 
   clearInterval(timeId);
   clearInterval(startTimer);
-  enterSc = 0;
-  enterMn = 0;
-  enterHr = 0;
-   firstCell.innerHTML = 0; 
-   secondCell.innerHTML = 0;  
-   thirdCell.innerHTML = 0;
-   fourthCell.innerHTML = 0;
-   fifthCell.innerHTML = 0;  
-   sixthCell.innerHTML = 0;
+  setHours('00');
+  setMinutes('00');
+  setSeconds('00');
 }
 //*************************************Buttons click******************************************* */
 clear.addEventListener('click', () => {
