@@ -117,57 +117,31 @@ function getCurrentTime() {
    buttons.buttonStop.disabled = true;
 }
 getCurrentTime();
-//*****************************************************************************************************
-var startStopwatch;
-
+//StopWatch********************************************************************************************************
 function stopwatchOn() {
-  var minutes = 0;
-  var seconds = 0;
-  var milliseconds = 0;
-
-  startStopwatch = setInterval( function() {
-    milliseconds++;
-      if (milliseconds < 10) {
-          milliseconds = String(milliseconds);
-          fifthCell.innerHTML = 0;
-          sixthCell.innerHTML = milliseconds[0];
-        } else {
-          milliseconds = String(milliseconds);
-          fifthCell.innerHTML = milliseconds[0];
-          sixthCell.innerHTML = milliseconds[1];
-        }
-
+  let minutes = '00',
+      seconds = '00',
+      milliseconds = '00',
+      thirdCell = document.querySelector('#thirdCell');
+      
+    function setStopwatch() {
+        milliseconds++;
+        setSeconds(milliseconds);
+    
           if (milliseconds == 100) {
               seconds++;
               milliseconds = 0;
-              
-              if (seconds < 10) {
-                 seconds = String(seconds);
-                 thirdCell.innerHTML = 0;
-                 fourthCell.innerHTML = seconds[0];
-                 } else {
-                  seconds = String(seconds);
-                  thirdCell.innerHTML = seconds[0];
-                  fourthCell.innerHTML = seconds[1];
-               }
-
-                if (seconds == 60) {
-                      minutes++;
-                      seconds = 0;
-                      thirdCell.innerHTML = 0;   
-
-                      if (minutes < 10) {
-                        minutes = String(minutes);
-                        firstCell.innerHTML = 0;
-                        secondCell.innerHTML = minutes[0];
-                      } else {
-                        minutes = String(minutes);
-                        firstCell.innerHTML = minutes[0];
-                        secondCell.innerHTML = minutes[1];
-                      }
-      }  
-    } 
-  }, 10);
+              setMinutes(seconds);
+    
+            if (seconds == 60) {
+                minutes++;
+                seconds = 0;
+                thirdCell.innerHTML = 0;
+                setHours(minutes);
+          }           
+        }         
+      }
+  startStopwatch = setInterval(setStopwatch, 10);
 }
 //***************************************************************************************************
 var enterSc;
