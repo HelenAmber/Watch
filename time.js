@@ -70,6 +70,32 @@ function setSeconds(amount){
       sixthCell.innerHTML = amount[0];
     }
 }
+//Functions for button style and state*****************************************************************************
+function buttonsModes(selector, styleOfbutton, buttonState){ 
+  selector = document.querySelector(selector);
+  selector.style.backgroundColor = styleOfbutton;
+  selector.disabled = buttonState;
+}
+
+function buttonsStyle(selector1, selector2, selector3, style1, style2, style3){
+  selector1 = document.querySelector(selector1);
+  selector2 = document.querySelector(selector2);
+  selector3 = document.querySelector(selector3);
+
+  selector1.style.background = style1;
+  selector2.style.background = style2;
+  selector3.style.background = style3;
+}
+
+function buttonsState(selector1, selector2, selector3, state1, state2, state3){
+  selector1 = document.querySelector(selector1);
+  selector2 = document.querySelector(selector2);
+  selector3 = document.querySelector(selector3);
+
+  selector1.disabled = state1;
+  selector2.disabled = state2;
+  selector3.disabled = state3;
+}
 
 function getCurrentTime() {
   timeDisplay.style.background = "grey";
