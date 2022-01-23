@@ -1,4 +1,75 @@
-var timeId;
+let timeId,
+    startStopwatch,
+    getSeconds,
+    getMinutes,
+    getHours,
+    startTimer,
+    buttons = getButtons();
+//Getting buttons from the page*********************************************************************************   
+function getButtons(){
+    let buttonStart = document.querySelector('#buttonStart'),
+        buttonStop = document.querySelector('#buttonStop'),
+        timeDisplay = document.querySelector('#timeDisplay'),
+        stopwatch = document.querySelector('#stopwatch'),
+        timer =  document.querySelector('#timer'),
+        clear = document.querySelector('#clear');
+    return {
+          'buttonStart': buttonStart,
+          'buttonStop': buttonStop,
+          'timeDisplay': timeDisplay,
+          'stopwatch': stopwatch,
+          'timer': timer,
+          'clear' : clear 
+    };
+}
+// Getting clock display******************************************************************************************
+function setHours(amount){
+    let firstCell = document.querySelector('#firstCell'),
+        secondCell = document.querySelector('#secondCell');
+
+    if (typeof amount == 'number'){
+        amount = String(amount);
+    }
+    firstCell.innerHTML = amount[0]; 
+    secondCell.innerHTML = amount[1];
+ 
+    if (amount < 10) {
+      firstCell.innerHTML = 0;
+      secondCell.innerHTML = amount[0];
+   }
+}
+ 
+function setMinutes(amount){
+    let thirdCell = document.querySelector('#thirdCell'),
+        fourthCell = document.querySelector('#fourthCell');
+
+    if (typeof amount == 'number'){
+        amount = String(amount);
+    }
+    thirdCell.innerHTML = amount[0];
+    fourthCell.innerHTML = amount[1]; 
+ 
+    if (amount < 10) {
+      thirdCell.innerHTML = 0;
+      fourthCell.innerHTML = amount[0];  
+    }
+}
+ 
+function setSeconds(amount){
+    let fifthCell = document.querySelector('#fifthCell'),
+        sixthCell = document.querySelector('#sixthCell');
+    
+    if (typeof amount == 'number'){
+      amount = String(amount);
+    }
+    fifthCell.innerHTML = amount[0];  
+    sixthCell.innerHTML = amount[1]; 
+
+    if (amount < 10) {
+      fifthCell.innerHTML = 0;
+      sixthCell.innerHTML = amount[0];
+    }
+}
 
 function getCurrentTime() {
   timeDisplay.style.background = "grey";
@@ -274,3 +345,4 @@ timer.addEventListener('click', () => {
   buttonStart.disabled = false;
   buttonStop.disabled = false;
 });
+

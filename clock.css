@@ -73,7 +73,7 @@ body {
   width: 150px;
   height: 150px;
   top: 320px;
-  left: 1020px;
+  right: 100px;
 }
 
 #buttonStop {
@@ -83,7 +83,7 @@ body {
   width: 150px;
   height: 150px;
   top: 500px;
-  left: 1020px;
+  right: 100px;
 }
 
 .main_button {
@@ -119,7 +119,7 @@ body {
   border-radius: 20%;
   position: absolute;
   top: 200px;
-  left: 1000px;
+  right: 90px;
   background-image: url("clear-button-png-md.png");
   background-repeat: no-repeat;
   background-color: black;
