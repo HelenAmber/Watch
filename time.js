@@ -200,6 +200,9 @@ function timerOn() {
 function clearDisplay() { 
   clearInterval(timeId);
   clearInterval(startTimer);
+  getSeconds = 0;
+  getMinutes = 0;
+  getHours = 0;
   setHours('00');
   setMinutes('00');
   setSeconds('00');
